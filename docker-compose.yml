@@ -28,7 +28,7 @@ services:
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: docuser
-      POSTGRES_PASSWORD: docpass
+      POSTGRES_PASSWORD: abcd
       POSTGRES_DB: doc_intel
     ports:
       - "5432:5432"
