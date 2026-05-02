@@ -1,0 +1,55 @@
+# =============================================================================
+# Pipeline Stage Configuration
+# =============================================================================
+# Each stage can be toggled and tuned here without code changes.
+# The pipeline runner reads this file at startup via PIPELINE_CONFIG_PATH.
+# =============================================================================
+
+pipeline:
+  stages:
+    - name: ingest
+      enabled: true
+      options:
+        max_file_size_mb: 50
+        allowed_mime_types:
+          - application/pdf
+          - image/jpeg
+          - image/png
+          - image/tiff
+          - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+    - name: classify
+      enabled: true
+      options:
+        confidence_threshold: 0.70   # Below this → falls back to fallback_type
+        fallback_type: generic
+
+    - name: extract
+      enabled: true
+      options:
+        max_tokens: 4096
+        timeout_seconds: 120
+
+    - name: validate
+      enabled: true
+      options:
+        fail_fast: false              # true → abort pipeline on first rule failure
+
+# =============================================================================
+# LLM Model Selection
+# =============================================================================
+# These model IDs are passed to the active provider (openai or anthropic).
+# Override LLM_PROVIDER in .env to switch providers globally.
+
+llm:
+  classification_model: gpt-4o
+  extraction_model: gpt-4o
+  validation_model: gpt-4o-mini
+  temperature: 0.0
+  max_tokens: 4096
+
+# =============================================================================
+# Storage
+# =============================================================================
+storage:
+  presigned_url_ttl_seconds: 3600
