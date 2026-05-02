@@ -1,4 +1,4 @@
-# Doc Intelligence Platform
+# Doc Intelligence Pipeline
 
 A **generic, pipeline-based document intelligence API** — production-ready and fully industry-agnostic. Submit any document; the platform classifies, extracts structured data, and validates it against your rules automatically.
 
@@ -13,21 +13,6 @@ Organisations across every industry need to process unstructured documents — i
 - Validating the extracted data against business rules
 
 This platform solves all three steps in a single, configurable pipeline with no hard-coded document types, no domain-specific logic, and no proprietary dependencies.
-
----
-
-## How This Differs from Agent-Based Approaches
-
-| Dimension | Agent-Based (e.g. LangGraph) | This Platform (Pipeline) |
-|---|---|---|
-| **Orchestration** | Autonomous agents decide next step | Deterministic sequential stages |
-| **State management** | Distributed agent state machines | Single `PipelineContext` object |
-| **Failure handling** | Agent retry loops | Stage raises → background task catches |
-| **Observability** | External tracing required | Structured logs + `stage_timings` in DB |
-| **Dependencies** | LangChain / LangGraph ecosystem | Zero ML framework dependencies |
-| **LLM calls** | Via LangChain wrappers | Direct API calls (OpenAI / Anthropic) |
-| **Database** | MongoDB (document store) | PostgreSQL via SQLAlchemy ORM |
-| **Extendability** | Add a new agent class | Implement a protocol, register in factory |
 
 ---
 
@@ -77,7 +62,7 @@ This platform solves all three steps in a single, configurable pipeline with no 
 ## Project Structure
 
 ```
-generic-solution/
+SmartDocPro/
 ├── src/
 │   ├── api/
 │   │   ├── server.py          # FastAPI app factory + lifespan
