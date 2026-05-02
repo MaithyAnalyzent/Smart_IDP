@@ -337,6 +337,7 @@ The API is fully stateless — scale by adding replicas behind a load balancer. 
 5. Open a pull request with a clear description.
 
 ---
+Inspired by agent-based AI systems, I redesigned the architecture into a deterministic pipeline model to improve observability, reduce complexity, and remove heavy framework dependencies.
 
 ## License
 
